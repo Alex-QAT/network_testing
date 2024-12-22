@@ -29,7 +29,7 @@ def random_string(prefix, maxlen):
     return prefix + "".join([random.choice(symbols)
                              for i in range(random.randrange(maxlen))])
 
-testdata = [Proj(name="", description="")] + [Proj(name=random_string("=name=", 10), description=random_string("=descr=", 20))
+testdata = [Proj(name=random_string("=name=", 10), description=random_string("=descr=", 20))
                                                      for i in range(n)]
 
 file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", f)

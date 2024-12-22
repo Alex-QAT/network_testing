@@ -1,7 +1,7 @@
 from model.proj_mod import Proj
 
-def test_add_project(app, json_projects):
-    proj = json_projects
+def test_add_project(app, data_projects):
+    proj = data_projects
     old_pr_list = app.project.get_pr_list()
     # Отладка
     print('\n Before - ', app.project.count_pr())
