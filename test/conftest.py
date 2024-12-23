@@ -33,7 +33,9 @@ def app(request, config):
     global fixture
     browser = request.config.getoption("--browser")
     if fixture is None or not fixture.is_valid():
-        fixture = Application(browser=browser, base_url=config["web"]['baseUrl'])
+        #fixture = Application(browser=browser, base_url=config["web"]['baseUrl'])
+        # решили передавать не только base_url а весь конфиг, а там уж класс Application пусть сама забирает то что ему нужно
+        fixture = Application(browser=browser, config=config)
     fixture.session.ensure_login(username=config["web_admin"]['username'], pswd=config["web_admin"]['password'])
     return fixture
 
