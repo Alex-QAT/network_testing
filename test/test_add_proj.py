@@ -7,17 +7,19 @@ def test_add_project(app, data_projects, config):
     proj = data_projects
     # получение списка проектов из UI
     #old_pr_list = app.project.get_pr_list()
-    # получение списка проектов с помощью soap
+    # альтернативный метод - получение списка проектов с помощью soap
     old_pr_list = app.soap.get_soap_pr_list(username, password)
     # Отладка
     print('\n Before - ', app.project.count_pr())
-    #print(old_pr_list)
+    print(old_pr_list)
     app.project.create_project(proj)
     # Отладка
     print('\n After - ', app.project.count_pr())
+    # получение списка проектов из UI
     #new_pr_list = app.project.get_pr_list()
+    # альтернативный метод - получение списка проектов с помощью soap
     new_pr_list = app.soap.get_soap_pr_list(username, password)
-    #print(new_pr_list)
+    print(new_pr_list)
     assert len(old_pr_list) + 1 == app.project.count_pr()
     old_pr_list.append(proj)
     sort_old_pr_list = sorted(old_pr_list)
