@@ -2,7 +2,8 @@ from model.proj_mod import Proj
 import random
 
 
-def test_del_rnd_project(app):
+def test_del_rnd_project(app, config):
+    app.session.login(username=config["web_admin"]['username'], pswd=config["web_admin"]['password'])
     if len(app.project.get_pr_list()) == 0:
         app.project.create_project(Proj(name="test_proj", description="jgksl;gajdlgkr"))
     old_pr_list = app.project.get_pr_list()
@@ -18,5 +19,6 @@ def test_del_rnd_project(app):
     sort_old_pr_list = sorted(old_pr_list)
     sort_new_pr_list = sorted(new_pr_list)
     assert sort_old_pr_list == sort_new_pr_list
+    app.session.logout()
 
 

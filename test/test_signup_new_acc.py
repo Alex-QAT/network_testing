@@ -21,6 +21,8 @@ def test_signup_new_acc(app):
     # сам метод создания нового аккаунта (работа с Mantis (заполяем формы), работа с почтой POP3, подтверждение по ссылке и завершение регистрации)
     app.signup.new_acc(username, email, password)
     # проверка, логинимся под новым созданным аккаунтом
-    app.session.login(username, password)
+    #app.session.login(username, password)
+    # альтернативная проверка возможности залогиниться с помощью SOAP
+    assert app.soap.can_login(username, password)
     # разлогиниваемся
     app.session.logout()
